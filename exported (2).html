@@ -1,0 +1,69 @@
+```html
+<!-- design by censy | IMGBED-UPLOAD-ONLY v1.0 -->
+<meta charset="UTF-8">
+<style>
+.cib-only{width:100%;height:220px;margin:0 auto;background:#edf2f8;border-radius:10px;overflow:hidden;display:flex;flex-direction:column;font-family:-apple-system,'Microsoft YaHei',sans-serif;font-size:13px;color:#2c3e5a;position:relative;box-sizing:border-box;border:1px solid #c8d9ed}
+.cib-only *,.cib-only *::before,.cib-only *::after{box-sizing:border-box;margin:0;padding:0}
+.cib-only-hd{height:40px;background:linear-gradient(135deg,#1a6fc4,#3a8ee6);display:flex;align-items:center;padding:0 16px;flex-shrink:0;justify-content:space-between;box-shadow:0 2px 8px rgba(26,111,196,.25)}
+.cib-only-tt{font-size:13px;font-weight:700;color:#fff;letter-spacing:.5px}
+.cib-only-badge{font-size:10px;color:rgba(255,255,255,.7);background:rgba(255,255,255,.15);padding:2px 10px;border-radius:10px}
+.cib-only-bd{flex:1;padding:12px 14px;display:flex;flex-direction:column;gap:8px;background:#f4f7fb;overflow:hidden}
+.cib-only-up{border:2px dashed #a3c4e8;border-radius:8px;padding:14px;text-align:center;cursor:pointer;transition:.3s;background:#fafcfe;display:flex;flex-direction:column;align-items:center;justify-content:center;gap:3px;flex:1}
+.cib-only-up:hover,.cib-only-up.dg{border-color:#1a6fc4;background:#eaf1fa}
+.cib-only-up-ic{font-size:22px}
+.cib-only-up-tx{font-size:11px;color:#7a96b4}
+.cib-only-up-tx b{color:#1a6fc4}
+.cib-only-up-sub{font-size:10px;color:#a8bdd4}
+.cib-only-urlr{display:flex;gap:6px}
+.cib-only-inp{height:32px;background:#fff;border:1px solid #c8d9ed;border-radius:6px;padding:0 10px;color:#2c3e5a;font-size:12px;outline:none;transition:.2s;flex:1}
+.cib-only-inp:focus{border-color:#1a6fc4;box-shadow:0 0 0 2px rgba(26,111,196,.1)}
+.cib-only-inp::placeholder{color:#a8bdd4}
+.cib-only-btn{height:32px;padding:0 14px;background:#1a6fc4;border:none;border-radius:6px;color:#fff;font-size:12px;font-weight:600;cursor:pointer;white-space:nowrap;transition:.2s;flex-shrink:0}
+.cib-only-btn:hover{background:#1558a0}
+.cib-only-ts{position:absolute;bottom:36px;left:50%;transform:translateX(-50%) translateY(16px);background:#1a6fc4;color:#fff;padding:4px 16px;border-radius:6px;font-size:11px;opacity:0;transition:.3s;z-index:200;pointer-events:none;white-space:nowrap;box-shadow:0 2px 10px rgba(26,111,196,.3)}
+.cib-only-ts.sh{opacity:1;transform:translateX(-50%) translateY(0)}
+.cib-only-ft{height:22px;background:#e4ecf4;border-top:1px solid #d0dfee;display:flex;align-items:center;justify-content:space-between;padding:0 14px;font-size:10px;color:#8a9fba;flex-shrink:0}
+</style>
+<div class="cib-only" id="cibOnly">
+<div class="cib-only-hd"><div class="cib-only-tt">🖼️ 图片上传</div><div class="cib-only-badge" id="cibo_ct">0 张</div></div>
+<div class="cib-only-bd">
+<div class="cib-only-up" id="cibo_up"><div class="cib-only-up-ic">📤</div><div class="cib-only-up-tx">拖拽或 <b>点击上传</b></div><div class="cib-only-up-sub">JPG / PNG / GIF / WEBP</div></div>
+<input type="file" id="cibo_fi" accept="image/*" multiple style="display:none"/>
+<div class="cib-only-urlr"><input class="cib-only-inp" id="cibo_url" placeholder="粘贴图片外链，回车或点击添加"/><div class="cib-only-btn" id="cibo_add">添加</div></div>
+</div>
+<div class="cib-only-ts" id="cibo_ts">已添加</div>
+<div class="cib-only-ft"><span>● design by censy</span><span>IMGBED-UPLOAD v1.0</span></div>
+</div>
+<script>
+(function(){
+var COLD_IBO_MAX=50;
+var Tuan_IBO_store=[];
+var Z_IBO={
+up:document.getElementById('cibo_up'),
+fi:document.getElementById('cibo_fi'),
+url:document.getElementById('cibo_url'),
+add:document.getElementById('cibo_add'),
+ct:document.getElementById('cibo_ct'),
+ts:document.getElementById('cibo_ts')
+};
+function CeNsY_IBO_tip(m){Z_IBO.ts.textContent=m;Z_IBO.ts.classList.add('sh');setTimeout(function(){Z_IBO.ts.classList.remove('sh')},1500)}
+function CENSY_IBO_updateCt(){Z_IBO.ct.textContent=Tuan_IBO_store.length+' 张'}
+function Z_CONFIG_IBO_add(u){
+if(Tuan_IBO_store.length>=COLD_IBO_MAX){CeNsY_IBO_tip('已达上限');return}
+Tuan_IBO_store.push(u);CENSY_IBO_updateCt();CeNsY_IBO_tip('已添加 ✓');
+}
+function Tuan_IBO_readFiles(fs){
+Array.from(fs).forEach(function(f){
+var r=new FileReader();r.onload=function(ev){Z_CONFIG_IBO_add(ev.target.result)};r.readAsDataURL(f);
+});
+}
+Z_IBO.up.addEventListener('click',function(){Z_IBO.fi.click()});
+Z_IBO.fi.addEventListener('change',function(e){Tuan_IBO_readFiles(e.target.files);e.target.value=''});
+Z_IBO.up.addEventListener('dragover',function(e){e.preventDefault();this.classList.add('dg')});
+Z_IBO.up.addEventListener('dragleave',function(){this.classList.remove('dg')});
+Z_IBO.up.addEventListener('drop',function(e){e.preventDefault();this.classList.remove('dg');Tuan_IBO_readFiles(e.dataTransfer.files)});
+Z_IBO.add.addEventListener('click',function(){var v=Z_IBO.url.value.trim();if(v){Z_CONFIG_IBO_add(v);Z_IBO.url.value=''}else{CeNsY_IBO_tip('请输入链接')}});
+Z_IBO.url.addEventListener('keydown',function(e){if(e.key==='Enter'){var v=this.value.trim();if(v){Z_CONFIG_IBO_add(v);this.value=''}}});
+})();
+</script>
+```
